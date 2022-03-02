@@ -1,0 +1,7 @@
+<h1>ToDo List</h1>
+
+<app-add></app-add>
+<app-todo  
+  *ngFor="let todo of todoManageService.todos;" 
+  [todo] = 'todo'>
+</app-todo>

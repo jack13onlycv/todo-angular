@@ -1,0 +1,12 @@
+<div class="add-wrapper">
+  <input 
+    type="text" 
+    class="add-wrapper__input" 
+    [(ngModel)]="todoManageService.newTodoTitle"    
+    placeholder="Type something...">
+  <button 
+    class="add-wrapper__add-button" 
+    (click)="todoManageService.addTodo()">
+    +
+  </button>
+</div>

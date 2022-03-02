@@ -1,0 +1,52 @@
+<div class="todos-wrapper">
+
+  <div 
+    class="todo-wrapper" 
+    [ngClass] = "{
+      isDone: todo.completed
+    }">
+
+      <input 
+        type="checkbox" 
+        name="todo-wrapper__isCompleted" 
+        [id]="todo.id" 
+        [checked]="todo.completed"
+        (click)="todoManageService.complete(todo.id, !todo.completed)">
+
+      <label 
+        [appCompleted]="todo.completed"
+        [for]="todo.id"
+        *ngIf="!editing; else elseEdit"
+        class="todo-wrapper__todo-text">
+        {{todo.title | uppercase | textLength}}
+      </label>
+      <ng-template #elseEdit>
+        <input 
+          class="todo-wrapper__todo-text todo-text-edit"
+          type="text"
+          editedTitle="todo.title"
+          [(ngModel)]="editedTitle"
+          >
+      </ng-template>
+      <button *ngIf="!editing; else elseEditButton"
+        class="todo-wrapper__edit edit"
+        (click)="editTitle()">
+        &#9998;
+      </button>
+      <ng-template #elseEditButton>
+        <button
+          class="todo-wrapper__edit save"
+          (click)="saveTitle()">
+          &#10003;
+        </button>
+      </ng-template>
+
+      <button 
+        class="todo-wrapper__delete"
+        (click)="todoManageService.remove(todo.id)"
+        >	
+        &#10006;
+      </button>
+
+    </div>
+</div>
